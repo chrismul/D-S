@@ -15,7 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.chrismuldoon.development.entities.CompactDisc;
-import com.chrismuldoon.development.entities.CompactDiscList;
+import com.chrismuldoon.development.entities.TrackList;
 import com.chrismuldoon.development.services.CompactDiscService;
 
 @Path("/compactdiscs")
@@ -28,8 +28,8 @@ public class PlaylistCRUDService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public CompactDiscList getCompactDiscs() {
-        CompactDiscList discs = new CompactDiscList();
+    public TrackList getCompactDiscs() {
+        TrackList discs = new TrackList();
         discs.setDiscCollection(service.getCatalog());
         return discs;
     }
