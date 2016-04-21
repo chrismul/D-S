@@ -10,22 +10,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity @Table(name="user")
+@Entity 
+@Table(name="users")
 @XmlRootElement
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="Id") private Integer id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id") private Integer id;
 	
-	@Column(name="Title") private String username; 
-	@Column(name="Artist") private String password; 
+	@Column(name="username") private String username; 
+	@Column(name="password") private String password; 
 
 
-	public User(Integer id, String username, String password) {
-		this.id = id;
+	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-@Entity @Table(name="library")
+@Entity @Table(name="libraries")
 @XmlRootElement
 public class Library implements Serializable {
 
