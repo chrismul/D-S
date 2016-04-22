@@ -22,7 +22,7 @@ import com.chrismuldoon.development.entities.User;
 @TransactionAttribute (TransactionAttributeType.REQUIRED)
 public class UserServiceEJB implements UserService {
 
-Logger logger = Logger.getLogger("UsersEJB");
+Logger logger = Logger.getLogger("UserEJB");
 	
 	@PersistenceContext
 	private EntityManager em;

@@ -16,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.chrismuldoon.development.entities.Track;
 import com.chrismuldoon.development.entities.TrackList;
+import com.chrismuldoon.development.entities.User;
 import com.chrismuldoon.development.services.TrackService;
 
 @Path("/tracks")
@@ -28,7 +29,7 @@ public class TrackCRUDService {
     @Produces(MediaType.APPLICATION_JSON)
 	public TrackList getTracks(){
 		TrackList tracks = new TrackList();
-		tracks.setTrackCollection(service.getCatalog());
+		tracks.setTrackCollection(service.getAllTracks());
 		return tracks;
 	}
 	
@@ -36,6 +37,12 @@ public class TrackCRUDService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addTrack(Track track) {
 		track.setId(0); // make sure the ID is not set
-		service.addToCatalog(track);
+		service.addTrack(track);
+	}
+	
+	@PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void updateTrack(Track updatedTrack) {
+		service.updateTrack(updatedTrack);
 	}
 }

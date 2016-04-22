@@ -11,6 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement // this is required to enable JSON serialization
 public class TrackList implements Serializable {
 
+	private Collection<Track> trackCollection;
+	
     public Collection<Track> getTrackCollection() {
         return trackCollection;
     }
@@ -20,7 +22,7 @@ public class TrackList implements Serializable {
     }
 
 
-    private Collection<Track> trackCollection;
+    
 
 
 

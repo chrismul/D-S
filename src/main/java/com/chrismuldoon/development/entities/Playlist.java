@@ -31,11 +31,11 @@ public class Playlist implements Serializable {
 	@JoinColumn(name="LibraryId", referencedColumnName = "Id")
 	private Library library;
 	
-	//Adding relationships
-	@OneToMany(mappedBy="playlist", cascade={CascadeType.ALL})
-	@JsonIgnore
-	private Set<Track> track = new HashSet<Track>();
-	//@XmlTransient
+//	//Adding relationships
+//	@OneToMany(mappedBy="playlist", cascade={CascadeType.ALL})
+//	@JsonIgnore
+//	private Set<Track> track = new HashSet<Track>();
+//	//@XmlTransient
 	
 	public Playlist(Integer id, String playlistName, Library library) {
 		this.id = id;
@@ -69,13 +69,13 @@ public class Playlist implements Serializable {
 		this.library = library;
 	}
 
-	@JsonIgnore
-	public Set<Track> getTrack() {
-		return track;
-	}
-
-	public void setTrack(Set<Track> track) {
-		this.track = track;
-	}
+//	@JsonIgnore
+//	public Set<Track> getTrack() {
+//		return track;
+//	}
+//
+//	public void setTrack(Set<Track> track) {
+//		this.track = track;
+//	}
 
 }

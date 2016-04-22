@@ -1,6 +1,7 @@
 package com.chrismuldoon.development.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,12 +10,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+
 
 @Entity @Table(name="libraries")
 @XmlRootElement
@@ -27,15 +32,16 @@ public class Library implements Serializable {
 	
 	@Column(name="PlaylistName") private String playlistName;
 	
-	@ManyToOne
-	@JoinColumn(name="UserId", referencedColumnName = "Id")
+	@OneToOne
+	@JoinColumn(name="user_Id", referencedColumnName = "Id")
 	private User user;
 	
-	//Adding relationships
-	@OneToMany(mappedBy="library", cascade={CascadeType.ALL})
-	@JsonIgnore
-	private Set<Playlist> playlist = new HashSet<Playlist>();
-	//@XmlTransient
+	@ManyToMany(cascade={CascadeType.ALL})
+	@JoinTable(name="library_playlist", joinColumns= {@JoinColumn(name="library_id", nullable = false)}, 
+									  inverseJoinColumns={@JoinColumn(name="playlist_id", nullable = false)})
+	private Collection<Playlist> playlists;
+	
+	
 
 	public Library(Integer id, String playlistName, User user) {
 		super();
@@ -70,12 +76,12 @@ public class Library implements Serializable {
 		this.user = user;
 	}
 
-	public Set<Playlist> getPlaylist() {
-		return playlist;
-	}
-
-	public void setPlaylist(Set<Playlist> playlist) {
-		this.playlist = playlist;
-	}
+//	public Set<Playlist> getPlaylist() {
+//		return playlist;
+//	}
+//
+//	public void setPlaylist(Set<Playlist> playlist) {
+//		this.playlist = playlist;
+//	}
 
 }

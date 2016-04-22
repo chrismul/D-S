@@ -8,11 +8,12 @@ import com.chrismuldoon.development.entities.Track;
 
 @Local
 public interface TrackDAO {
-	
-	void addTrack(Track track);
-	Track getTrackByTitle(String title);
-	Collection<Track> getTracksByArtist(String artist);
-	Collection<Track> getAllTracks();
-}
 
+	public void addTrack(Track track);
+	public Track getTrack(String trackName);
+	public void updateTrack(Track track);
+	public Collection<Track> getTracksByArtist(String artistName);
+	public Collection<Track> getTracksByAlbum(String albumName);
+	public Collection<Track> getAllTracks();
+}
 

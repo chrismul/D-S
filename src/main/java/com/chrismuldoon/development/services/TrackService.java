@@ -11,7 +11,11 @@ import com.chrismuldoon.development.entities.Track;
 @Local
 public interface TrackService {
 
-	public Collection<Track> getCatalog() ;
-	public void addToCatalog(Track disc);
-	
+	public void addTrack(Track track);
+	public Track getTrack(String trackName);
+	public void updateTrack(Track Track);
+	public Collection<Track> getTracksByArtist(String artistName);
+	public Collection<Track> getTracksByAlbum(String albumName);
+	public Collection<Track> getAllTracks();
+
 }

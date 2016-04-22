@@ -4,46 +4,41 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-@Entity @Table(name="track")
+@Entity 
+@Table(name="tracks")
 public class Track implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="Id") private Integer id;
+	@Column(name="track_id") private Integer id;
 	
-	@Column(name="Title") private String title; 
-	@Column(name="Artist") private String artist; 
-	@Column(name="Album") private String album; 
-	@Column(name="Genre") private String genre; 
-	@Column(name="Year") private String year;
-	@Column(name="Length") private String length; 
-	@Column(name="Size") private String size;
-	@Column(name="DateAdded") private String dateAdded;
-	@Column(name="Location") private String location;
+	@Column(name="name") private String name; 
+	@Column(name="artist") private String artist; 
+	@Column(name="album") private String album; 
+	@Column(name="genre") private String genre; 
+	@Column(name="year") private String year;
+	@Column(name="length") private String length; 
+	@Column(name="size") private String size;
+	@Column(name="date_added") private String dateAdded;
+	@Column(name="location") private String location;
 	
-	@ManyToOne
-	@JoinColumn(name="PlaylistId", referencedColumnName = "Id")
-	private Playlist playlist;
-
-	public Track(Integer id, String title, String artist, String album,
+	public Track(Integer id, String name, String artist, String album,
 			String genre, String year, String length, String size,
-			String dateAdded, String location, Playlist playlist) {
-			this.id = id;
-			this.title = title;
-			this.artist = artist;
-			this.album = album;
-			this.genre = genre;
-			this.year = year;
-			this.length = length;
-			this.size = size;
-			this.dateAdded = dateAdded;
-			this.location = location;
-			this.playlist = playlist;
+			String dateAdded, String location) {
+		this.id = id;
+		this.name = name;
+		this.artist = artist;
+		this.album = album;
+		this.genre = genre;
+		this.year = year;
+		this.length = length;
+		this.size = size;
+		this.dateAdded = dateAdded;
+		this.location = location;
 	}
 	
-	public Track(){}
+	public Track() {}
 
 	public Integer getId() {
 		return id;
@@ -53,12 +48,12 @@ public class Track implements Serializable {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getArtist() {
@@ -124,14 +119,7 @@ public class Track implements Serializable {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
-	public Playlist getPlaylist() {
-		return playlist;
-	}
-
-	public void setPlaylist(Playlist playlist) {
-		this.playlist = playlist;
-	}
+	
+	
 }
-
 	
