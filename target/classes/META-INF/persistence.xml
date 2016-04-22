@@ -6,7 +6,6 @@
    <persistence-unit name="ituneslibrary1" transaction-type="JTA">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
       <jta-data-source>java:/mySQL/ituneslibrary</jta-data-source>     
-      <!--  <class>com.coolbeanzzz.development.entities.MccMnc</class> -->
       <properties>
          <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
       </properties>

@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import com.chrismuldoon.development.entities.Track;
 import com.chrismuldoon.development.entities.TrackList;
 import com.chrismuldoon.development.entities.User;
+import com.chrismuldoon.development.services.LoadService;
 import com.chrismuldoon.development.services.TrackService;
 
 @Path("/tracks")
@@ -25,12 +26,23 @@ public class TrackCRUDService {
 	@Inject
 	private TrackService service;
 	
+	@Inject
+	private LoadService loadService;
+	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	public TrackList getTracks(){
 		TrackList tracks = new TrackList();
 		tracks.setTrackCollection(service.getAllTracks());
 		return tracks;
+	}
+	
+	@Path("/list")
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	public String getTracksList(){
+		loadService.LoadData();
+		return "hello";
 	}
 	
 	@POST

@@ -1,5 +1,6 @@
 package com.chrismuldoon.development.dao.jpa;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,6 +27,15 @@ public class JPATrackDAO implements TrackDAO {
 		List<Track> tracks = query.getResultList(); 
 		if (!tracks.contains(track))
 			em.persist(track);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void addTracks(Collection<Track> tracks) {
+	
+		for(Track track: tracks){
+			em.merge(track);
+		}
 	}
 
 	@Override

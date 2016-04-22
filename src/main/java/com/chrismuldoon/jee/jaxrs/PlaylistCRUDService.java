@@ -1,5 +1,5 @@
 package com.chrismuldoon.jee.jaxrs;
-/*
+
 import java.util.*;
 
 import javax.ejb.EJB;
@@ -14,50 +14,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.chrismuldoon.development.entities.CompactDisc;
-import com.chrismuldoon.development.entities.TrackList;
-import com.chrismuldoon.development.services.CompactDiscService;
+import com.chrismuldoon.development.services.LoadService;
 
-@Path("/compactdiscs")
+
+@Path("/playlist")
 public class PlaylistCRUDService {
 	
 
 	@Inject
-	private CompactDiscService service;
+	private LoadService loadService;
 	
-
-    @GET
+	@Path("/list")
+	@GET
     @Produces(MediaType.APPLICATION_JSON)
-    public TrackList getCompactDiscs() {
-        TrackList discs = new TrackList();
-        discs.setDiscCollection(service.getCatalog());
-        return discs;
-    }
-
-
-
-//    @GET
-//	@Path("/{id}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//	public CompactDisc getCompactDisc(@PathParam("id") int id) {
-//		return library.get(id);
-//	}
-	
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void addCompactDisc(CompactDisc disc) {
-		disc.setId(0); // make sure the ID is not set
-		service.addToCatalog(disc);
+	public String getPlaylistsList(){
+		loadService.LoadData();
+		return "hello";
 	}
-	
-//	@PUT
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public void updateCompactDisc(CompactDisc updatedDisc) {
-//		library.put(updatedDisc.getId(), updatedDisc);
-//	}
-//	@DELETE
-//    @Path("/{id}")
-//	public void deleteCompactDisc(@PathParam("id") int id) {
-//		library.remove(id);
-//	}
-}*/
+}

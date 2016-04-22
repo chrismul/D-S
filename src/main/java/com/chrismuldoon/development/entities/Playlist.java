@@ -16,20 +16,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-@Entity @Table(name="playlist")
+@Entity @Table(name="playlists")
 @XmlRootElement
 public class Playlist implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="Id") private Integer id;
+	@Column(name="id") private Integer id;
 	
-	@Column(name="PlaylistName") private String playlistName;
+	@Column(name="playlist_name") private String playlistName;
+	@Column(name="persistent_id") private String persistentId;
 	
-	@ManyToOne
-	@JoinColumn(name="LibraryId", referencedColumnName = "Id")
-	private Library library;
+	
 	
 //	//Adding relationships
 //	@OneToMany(mappedBy="playlist", cascade={CascadeType.ALL})
@@ -37,10 +36,10 @@ public class Playlist implements Serializable {
 //	private Set<Track> track = new HashSet<Track>();
 //	//@XmlTransient
 	
-	public Playlist(Integer id, String playlistName, Library library) {
+	public Playlist(Integer id, String playlistName, String persistentId) {
 		this.id = id;
 		this.playlistName = playlistName;
-		this.library = library;
+		this.persistentId = persistentId;
 	}
 		
 	public Playlist() {}
@@ -60,15 +59,16 @@ public class Playlist implements Serializable {
 	public void setPlaylistName(String playlistName) {
 		this.playlistName = playlistName;
 	}
-
-	public Library getLibrary() {
-		return library;
+	
+	public String getPersistentId() {
+		return persistentId;
 	}
 
-	public void setLibrary(Library library) {
-		this.library = library;
+	public void setPersistentId(String persistentId) {
+		this.persistentId = persistentId;
 	}
 
+	
 //	@JsonIgnore
 //	public Set<Track> getTrack() {
 //		return track;

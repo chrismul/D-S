@@ -18,23 +18,16 @@ public class Track implements Serializable {
 	@Column(name="album") private String album; 
 	@Column(name="genre") private String genre; 
 	@Column(name="year") private String year;
-	@Column(name="length") private String length; 
-	@Column(name="size") private String size;
-	@Column(name="date_added") private String dateAdded;
 	@Column(name="location") private String location;
 	
 	public Track(Integer id, String name, String artist, String album,
-			String genre, String year, String length, String size,
-			String dateAdded, String location) {
+			String genre, String year, String location) {
 		this.id = id;
 		this.name = name;
 		this.artist = artist;
 		this.album = album;
 		this.genre = genre;
 		this.year = year;
-		this.length = length;
-		this.size = size;
-		this.dateAdded = dateAdded;
 		this.location = location;
 	}
 	
@@ -86,30 +79,6 @@ public class Track implements Serializable {
 
 	public void setYear(String year) {
 		this.year = year;
-	}
-
-	public String getLength() {
-		return length;
-	}
-
-	public void setLength(String length) {
-		this.length = length;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
-	}
-
-	public String getDateAdded() {
-		return dateAdded;
-	}
-
-	public void setDateAdded(String dateAdded) {
-		this.dateAdded = dateAdded;
 	}
 
 	public String getLocation() {
