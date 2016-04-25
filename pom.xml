@@ -5,10 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <properties>
-		<version.jacoco>0.7.4.201502262128</version.jacoco>
-		<version.arquillian_jacoco>1.0.0.Alpha8</version.arquillian_jacoco>
-		<version.arquillian-bom>1.1.11.Final</version.arquillian-bom>
-		<version.jboss-as-arquillian-container-remote>7.1.1.Final</version.jboss-as-arquillian-container-remote>
+		
 		<version.jboss-javaee-7.0>1.0.0.Final</version.jboss-javaee-7.0>
 		<version.jackson-core-asl>1.9.13</version.jackson-core-asl>
 		<version.jxl>2.6.12</version.jxl>
@@ -26,35 +23,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.jboss.arquillian</groupId>
-				<artifactId>arquillian-bom</artifactId>
-				<version>${version.arquillian-bom}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>com.jayway.restassured</groupId>
-				<artifactId>rest-assured</artifactId>
-				<version>2.9.0</version>
-			</dependency>
-			<dependency>
-				<groupId>com.jayway.restassured</groupId>
-				<artifactId>json-schema-validator</artifactId>
-				<version>2.9.0</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.jayway.restassured</groupId>
-				<artifactId>json-path</artifactId>
-				<version>2.9.0</version>
-			</dependency>
-		</dependencies>
+
 	</dependencyManagement>
 	
 	<dependencies>
-		<dependency>
+	<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>
 			<version>1.2.4</version>
@@ -101,54 +74,8 @@
 			<version>${version.junit}</version>
 		</dependency>
 		<!-- RESTeasy JAX-RS -->
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<version>${version.resteasy-jaxrs}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-multipart-provider</artifactId>
-			<version>${version.resteasy-multipart-provider}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>${version.json-simple}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>${version.json}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>${version.mokito}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jayway.restassured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-nop</artifactId>
-			<version>1.6.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.6.4</version>
-		</dependency>
+		
+		
 	</dependencies>
 	<profiles>
 		<profile>

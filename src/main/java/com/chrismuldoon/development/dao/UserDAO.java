@@ -10,5 +10,6 @@ public interface UserDAO {
 	public void updateUser(User user);
 	public User removeUser(String username);
 	public Collection<User> getAllUsers();
+	
 
 }

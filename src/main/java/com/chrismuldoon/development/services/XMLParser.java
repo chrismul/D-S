@@ -29,7 +29,7 @@ public class XMLParser {
 					
 			
 		try {
-			String filePath = "C:/Users/D15122952/Desktop/lib1.xml";
+			String filePath = "C:/Users/Chris/Desktop/itunes.xml";
 			File xmlFile = new File(filePath);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory

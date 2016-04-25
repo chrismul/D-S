@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 @Entity 
 @Table(name="users")
 @XmlRootElement
@@ -24,7 +25,7 @@ public class User implements Serializable {
 	@Column(name="username") private String username; 
 	@Column(name="password") private String password; 
 
-
+	
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -47,7 +48,7 @@ public class User implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+	
 	public String getPassword() {
 		return password;
 	}

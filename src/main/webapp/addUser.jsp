@@ -8,12 +8,12 @@
 <title>Add User</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="../media/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/syntax/shCore.css">
-	<link rel="stylesheet" type="text/css" href="../media/css/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="../resources/demo.css">
-	<link rel="stylesheet" type="text/css" href="../media/css/mainPage.css">
-	<link rel="stylesheet" type="text/css" href="../media/css/user.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="resources/syntax/shCore.css">
+	<link rel="stylesheet" type="text/css" href="media/css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="resources/demo.css">
+	<link rel="stylesheet" type="text/css" href="media/css/mainPage.css">
+	<link rel="stylesheet" type="text/css" href="media/css/user.css" />
 <!--
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -24,17 +24,17 @@
 <style type="text/css" class="init">
  -->
 
-</style>
-<script type="text/javascript" language="javascript" src="../media/js/jquery.js"></script>
-<script type="text/javascript" language="javascript" src="../resources/syntax/shCore.js"></script>
-<script type="text/javascript" src="../media/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../media/js/transition.js"></script>
-<script type="text/javascript" src="../media/js/moment-with-locales.js"></script>
-<script type="text/javascript" src="../media/js/collapse.js"></script>
+
+<script type="text/javascript" language="javascript" src="media/js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="resources/syntax/shCore.js"></script>
+<script type="text/javascript" src="media/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="media/js/transition.js"></script>
+<script type="text/javascript" src="media/js/moment-with-locales.js"></script>
+<script type="text/javascript" src="media/js/collapse.js"></script>
 <script type="text/javascript" language="javascript" class="init"></script>
-<script type="text/javascript" src="../media/js/select2.full.js"></script>
+<script type="text/javascript" src="media/js/select2.full.js"></script>
 	
-</script>
+
 </head>
 
 <body>
@@ -42,7 +42,7 @@
 	<div class="container">
 		<div class="jumbotron" style="background: #337AB7; font-family: HelveticaNeue,Helvetica,Arial,sans-serif">
 			<header>
-				<h1>CoolBeanzzz</h1>
+				<h1>iLib</h1>
 			</header>
 		</div>
 	</div>
@@ -61,11 +61,9 @@
 				<ul class="nav navbar-nav">
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li style="font-size: 1.8em;"><a href="upload.jsp" class="navbar-brand"><span></span> Upload Dataset</a></li>
-					<li style="font-size: 1.8em;"><a href="#" id="logintype" class="navbar-brand"><span></span> Hello</a></li>
-					<li style="font-size: 1.8em;">
-						<a href="../logout">
-							<span class="glyphicon glyphicon-log-out"></span> Logout
+					
+						<a href="logout">
+							<span class="glyphicon glyphicon-log-out"></span> Log out
 						</a>
 					</li>
 				</ul>
@@ -100,18 +98,9 @@
 					<input type="password" class="form-control" id="pWord">
 					<br/>
 					<br/>
-					<label for="pWordConf">Password Confirm</label>
+					<label for="pWordConf">Confirm Password</label>
 					<input type="password" class="form-control" id="pWordConf">
 					<br/>
-					<div>
-					<label for="userType">Choose User Type</label>
-					<form action="" id="userType">
-					    <input type="radio" name="userType" value="SysAd"> System Administrator <br>
-					    <input type="radio" name="userType" value="NetManEng"> Network Manager<br>
-					    <input type="radio" name="userType" value="SupEng"> Support Engineer <br>
-					    <input type="radio" name="userType" value="CSR" checked> Customer Service Representative
-					</form>
-					</div>
 					
 					<p id="count">
 					</p>			
@@ -133,32 +122,31 @@
 	
 	$(document).ready(function() {
 		$(function() {
-			setUserDetails();
-			populateUsernameDropdown();
+			/*setUserDetails();
+			
+			populateUsernameDropdown();*/
 			swapType(1);
 		});
 	});
 	
-	function setUserDetails() {
+/*	function setUserDetails() {
 		$.ajax({
 			type : 'GET',
-			url : '../rest/users/currentUser',
+			url : './rest/users/currentUser',
 			success : function(data) {
-				var userBar = document.getElementById("userBar");
-				userBar.innerHTML = "Priviledge type: " + data[1];
+			//	var userBar = document.getElementById("userBar");
+			//	userBar.innerHTML = "Priviledge type: " + data[1];
 				var loginType = document.getElementById("logintype");
 				loginType.innerHTML = "<span></span>Logged in as: "
 						+ data[0];
 			},
 		});
-	}
+	}*/
 		
 //define Users object
-function Users(userName,passWord,userType) {
-	this.id=0;
-	this.username = userName;
-	this.passkey = passWord;
-	this.userType = userType;
+function User(username,password) {
+	this.username = username;
+	this.password = password;
 }
 
 function swapType(i){
@@ -187,15 +175,6 @@ function swapType(i){
 //Get input from page
 function addUser() {
 	
-	var radios = document.getElementsByName("userType");
-	var uType="none";
-	for (var i = 0; i < radios.length; i++) {
-    	if (radios[i].checked) {
-	        var uType = radios[i].value;
-	        // only one radio can be logically checked, don't check the rest
-	        break;
-    	}
-	}//radio loop
 	
 	var uName = $("#uName").val();
 
@@ -214,7 +193,7 @@ function addUser() {
 				}
 				else{
 					var pWord = pWord0;
-					var user = new Users(uName, pWord, uType);
+					var user = new User(uName, pWord);
 					call(user);
 				}
 			}else{
@@ -225,18 +204,9 @@ function addUser() {
 
 }
 
-//Get input from page
+/*/Get input from page
 function editUser() {
 	
-	var radios = document.getElementsByName("userType");
-	var uType="none";
-	for (var i = 0; i < radios.length; i++) {
-    	if (radios[i].checked) {
-	        var uType = radios[i].value;
-	        // only one radio can be logically checked, don't check the rest
-	        break;
-    	}
-	}//radio loop
 	
 	var uName = $("#uNameDropdown").select2('data')[0].text;
 
@@ -254,10 +224,10 @@ function editUser() {
 			}
 			else{
 				var pWord = pWord0;
-				var user = new Users(uName, pWord, uType);
+				var user = new User(uName, pWord);
 				$.ajax({
 					type : 'PUT',
-					url : '../rest/users',
+					url : './rest/users',
 					dataType: "json",
 					contentType: 'application/json',
 					data: JSON.stringify(user),
@@ -275,30 +245,30 @@ function editUser() {
 }
 
 function removeUser(){
-	if($("#uNameDropdown").select2('data')[0].text=="admin"){
+	/*if($("#uNameDropdown").select2('data')[0].text=="admin"){
 		alert("Admin User Cannot be removed!");
 		return;
 	}
 	$.ajax({
 		type : 'DELETE',
-		url : '../rest/users/'+$("#uNameDropdown").select2('data')[0].text,
+		url : './rest/users/'+$("#uNameDropdown").select2('data')[0].text,
 		success: function(){
 			alert(" User Deleted ");
 			populateUsernameDropdown()
 		},
 	}); 
 	
-}
+}*/
 
 function call(user){
 	
 	$.ajax({
 		type : 'GET',
-		url : '../rest/users',
+		url : './rest/users',
 		success : function(data) {
-			for (i = 0; i < data.usersCollection.length; i++) {
+			for (i = 0; i < data.userCollection.length; i++) {
 				var add=true;
-				var opt = data.usersCollection[i].username;
+				var opt = data.userCollection[i].username;
 				if(opt == user.username){
 					alert("User Already Exists");
 					add=false;
@@ -308,7 +278,7 @@ function call(user){
 			if(add){
 				$.ajax({
 					type : 'POST',
-					url : '../rest/users',
+					url : './rest/users/addUser',
 					dataType: "json",
 					contentType: 'application/json',
 					data: JSON.stringify(user),
@@ -317,21 +287,21 @@ function call(user){
 					},
 				}); 
 			}
-			populateUsernameDropdown();
+		/*	populateUsernameDropdown();*/
 		},
 	});
 	
 	
 }	
 
-function populateUsernameDropdown() {
+/*function populateUsernameDropdown() {
 	$("#uNameDropdown").empty();
 	$.ajax({
 		type : 'GET',
-		url : '../rest/users',
+		url : './rest/users',
 		success : function(data) {
-			for (i = 0; i < data.usersCollection.length; i++) {
-				var opt = data.usersCollection[i].username;
+			for (i = 0; i < data.userCollection.length; i++) {
+				var opt = data.userCollection[i].username;
 				var text = "<option value=\""+i+"\">" + opt
 						+ "</option>";
 				$("#uNameDropdown").append(text);
@@ -341,7 +311,7 @@ function populateUsernameDropdown() {
 		},
 	});
 }
-	
+	*/
 	
 		 
 	</script>
