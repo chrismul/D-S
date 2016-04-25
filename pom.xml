@@ -74,6 +74,18 @@
 			<version>${version.junit}</version>
 		</dependency>
 		<!-- RESTeasy JAX-RS -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>${version.resteasy-jaxrs}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-multipart-provider</artifactId>
+			<version>${version.resteasy-multipart-provider}</version>
+			<scope>provided</scope>
+		</dependency>
 		
 		
 	</dependencies>

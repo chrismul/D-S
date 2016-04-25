@@ -55,15 +55,15 @@
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" id="userBar">User Name...Role</a>
+				<!-- >a class="navbar-brand" href="#" id="userBar">User Name...Role</a-->
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					
+					<li style="font-size: 1.8em;">
 						<a href="logout">
-							<span class="glyphicon glyphicon-log-out"></span> Log out
+							<span class="glyphicon glyphicon-log-out"></span> Log in
 						</a>
 					</li>
 				</ul>
@@ -73,25 +73,25 @@
 	<div class="col-lg-12">
 		<div class="panel panel-primary">
 			<div id="phead2" class="panel-heading">
-				<h4>Add/Edit Users</h4>
+				<h4>Sign Up</h4>
 			</div>
 			<div class="panel-body" style="font-size: 15px;">
 				<div align = "center">
 					<p>
 					<br/>
 					<form action="" id="add/editUser">
-					    <input id="addUserToggle" type="radio" onclick="swapType(1)" name="add/editUser" value="addUser" checked> Add User
-					    <input id="editUserToggle" type="radio" onclick="swapType(2)" name="add/editUser" value="editUser"> Edit/Remove Existing User
+					    <!-- input id="addUserToggle" type="radio" onclick="swapType(1)" name="add/editUser" value="addUser" checked> Add User
+					    <input id="editUserToggle" type="radio" onclick="swapType(2)" name="add/editUser" value="editUser"> Edit/Remove Existing User-->
 					</form>
 					<br/>
 					<div id="uNameDiv">
 						<label for="uName">Username</label>
 						<input type="text" class="form-control" id="uName">
 					</div>
-					<div id="uNameDropdownDiv">
+					<!-- div id="uNameDropdownDiv">
 						<label for="uNameDropdown">Username</label><br>
 						<select id="uNameDropdown" class="js-example-responsive" style="width: 450px;"></select>
-					</div>
+					</div-->
 					<br/>
 					<br/>
 					<label for="pWord">Password</label>
@@ -107,8 +107,8 @@
 						
 						  <div id="addUserDiv" class="btn-group" role="group" aria-label="First group">
 						    <button id="addUser" type="button" class="btn btn-primary" onclick="addUser()">Add User</button>	
-						    <button id="editUser" type="button" class="btn btn-primary" onclick="editUser()">Edit User</button>	
-						    <button id="removeUser" type="button" class="btn btn-primary" onclick="removeUser()">Remove User</button>
+						    <!--  >button id="editUser" type="button" class="btn btn-primary" onclick="editUser()">Edit User</button>	
+						    <button id="removeUser" type="button" class="btn btn-primary" onclick="removeUser()">Remove User</button-->
 						  </div>
 						
 					</div>
@@ -124,8 +124,9 @@
 		$(function() {
 			/*setUserDetails();
 			
-			populateUsernameDropdown();*/
-			swapType(1);
+			populateUsernameDropdown();
+			swapType(1);*/
+			showScreen();
 		});
 	});
 	
@@ -149,7 +150,7 @@ function User(username,password) {
 	this.password = password;
 }
 
-function swapType(i){
+/*function swapType(i){
 	switch(i){
 	case 1:
 		document.getElementById("addUserToggle").checked=true;
@@ -170,6 +171,11 @@ function swapType(i){
 		document.getElementById("removeUser").style.display="block";
 		break;
 	}
+}*/
+
+function showScreen(){
+	document.getElementById("uNameDiv").style.display="block";
+	document.getElementById("addUser").style.display="block";
 }
 
 //Get input from page

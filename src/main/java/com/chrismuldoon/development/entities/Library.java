@@ -28,44 +28,38 @@ public class Library implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="Id") private Integer id;
+	@Column(name="persistent_id") private String id;
 	
-	@Column(name="PlaylistName") private String playlistName;
-	
-	@OneToOne
-	@JoinColumn(name="user_Id", referencedColumnName = "Id")
+	@ManyToOne
+	@JoinColumn(name="username", referencedColumnName = "username", nullable = false, insertable = false, updatable = false)
 	private User user;
 	
-	@ManyToMany(cascade={CascadeType.ALL})
-	@JoinTable(name="library_playlist", joinColumns= {@JoinColumn(name="library_id", nullable = false)}, 
-									  inverseJoinColumns={@JoinColumn(name="playlist_id", nullable = false)})
-	private Collection<Playlist> playlists;
-	
-	
+	@JsonIgnore
+    @OneToMany(mappedBy="library", cascade={CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<Playlist> playlists = new HashSet<Playlist>();
 
-	public Library(Integer id, String playlistName, User user) {
+    public Set<Playlist> getPlaylists() {
+                    return playlists;
+    }
+
+    public void setPlaylists(Set<Playlist> playlists) {
+                    this.playlists = playlists;
+    }
+		
+	public Library(String id, User user) {
 		super();
 		this.id = id;
-		this.playlistName = playlistName;
 		this.user = user;
 	}
 
 	public Library() {}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getPlaylistName() {
-		return playlistName;
-	}
-
-	public void setPlaylistName(String playlistName) {
-		this.playlistName = playlistName;
 	}
 
 	public User getUser() {

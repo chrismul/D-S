@@ -86,7 +86,7 @@ public class UserCRUDService {
     @Path("/addUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addUser(User user) {
-		user.setId(0);
+//		user.setId(0);
 		service.addUser(user);
 	}
     

@@ -1,14 +1,19 @@
 package com.chrismuldoon.development.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,24 +30,27 @@ public class Playlist implements Serializable {
 	@Id
 	@Column(name="id") private Integer id;
 	
-	@Column(name="playlist_name") private String playlistName;
-	@Column(name="persistent_id") private String persistentId;
+	@Column(name="playlist_name") private String playlistName;	
+	
+	@ManyToOne
+	@JoinColumn(name="persistent_id", referencedColumnName = "persistent_id", nullable = false, insertable = false, updatable = false)
+	private Library library;
+	
+	@ManyToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinTable(name="playlist_track", joinColumns= {@JoinColumn(name="id", nullable=false)}, 
+									  inverseJoinColumns={@JoinColumn(name="track_id", nullable=false)})
+	private Collection<Track> tracks;
 	
 	
-	
-//	//Adding relationships
-//	@OneToMany(mappedBy="playlist", cascade={CascadeType.ALL})
-//	@JsonIgnore
-//	private Set<Track> track = new HashSet<Track>();
-//	//@XmlTransient
-	
-	public Playlist(Integer id, String playlistName, String persistentId) {
+	public Playlist(Integer id, String playlistName) {
 		this.id = id;
 		this.playlistName = playlistName;
-		this.persistentId = persistentId;
+		tracks = new ArrayList<Track>();
 	}
 		
-	public Playlist() {}
+	public Playlist() {
+		tracks = new ArrayList<Track>();
+	}
 
 	public Integer getId() {
 		return id;
@@ -60,22 +68,12 @@ public class Playlist implements Serializable {
 		this.playlistName = playlistName;
 	}
 	
-	public String getPersistentId() {
-		return persistentId;
+	public Collection<Track> getTracks() {
+		return tracks;
 	}
 
-	public void setPersistentId(String persistentId) {
-		this.persistentId = persistentId;
+	public void setTracks(Collection<Track> tracks) {
+		this.tracks = tracks;
 	}
-
-	
-//	@JsonIgnore
-//	public Set<Track> getTrack() {
-//		return track;
-//	}
-//
-//	public void setTrack(Set<Track> track) {
-//		this.track = track;
-//	}
 
 }

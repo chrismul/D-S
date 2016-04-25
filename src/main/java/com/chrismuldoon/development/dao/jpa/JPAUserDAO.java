@@ -56,11 +56,11 @@ static Logger logger = Logger.getLogger("JPAUserDAO");
 	public void updateUser(User user) {
 		Query query = em.createQuery("from User");
 		List<User> users = query.getResultList();
-		User existinguser = null;
+		//User existinguser = null;
 		for(User thisUser:users){
 			if(thisUser.getUsername().equals(user.getUsername())){
-				existinguser=thisUser;
-				user.setId(existinguser.getId());
+			//	existinguser=thisUser;
+			//	user.setId(existinguser.getId());
 				
 			}
 		}

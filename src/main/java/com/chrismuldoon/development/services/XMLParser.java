@@ -11,6 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
+import com.chrismuldoon.development.entities.Library;
 import com.chrismuldoon.development.entities.Playlist;
 import com.chrismuldoon.development.entities.Track;
 import com.mysql.fabric.xmlrpc.base.Array;
@@ -21,15 +22,15 @@ public class XMLParser {
 
 	public ArrayList<Playlist> playlists = new ArrayList<Playlist>();
 	
-	public XMLParser() {
-		// TODO Auto-generated constructor stub
-	}
+	public Library library = new Library();
+	
+	public XMLParser() {}
 
 	public void parseXML() {
 					
 			
 		try {
-			String filePath = "C:/Users/Chris/Desktop/itunes.xml";
+			String filePath = "C:/Users/D15122952/Desktop/itunes.xml";
 			File xmlFile = new File(filePath);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory
@@ -56,7 +57,6 @@ public class XMLParser {
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node node = nodeList.item(i);
 			
-			
 			//if node name is dict
 			//this is where library starts
 			//makes a list of nodes children
@@ -68,6 +68,9 @@ public class XMLParser {
 				for (int j = 0; j < childrenOfDictNode.getLength(); j++) {
 					Node node2 = childrenOfDictNode.item(j);
 
+					if(node2.getTextContent().contains("Library Persistent ID")){
+						library.setId(node.getNextSibling().getTextContent());
+					}
 					//if node name is dict
 					//this is where tracks start
 					//makes a list of nodes children
@@ -176,9 +179,6 @@ public class XMLParser {
 		if (node.getTextContent().contains("Name")) {
 			playlist.setPlaylistName(node.getNextSibling().getTextContent());
 		}
-		if (node.getTextContent().contains("Playlist Persistent ID")) {
-			playlist.setPersistentId(node.getNextSibling().getTextContent());
-		}	
 		
 		
 	}
@@ -197,6 +197,9 @@ public class XMLParser {
 		
 	}
 	
+	public Library getLibrary(){
+		return library;
+	}
 	
 	
 	}

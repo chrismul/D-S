@@ -4,6 +4,7 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import com.chrismuldoon.development.dao.LibraryDAO;
 import com.chrismuldoon.development.dao.PlaylistDAO;
 import com.chrismuldoon.development.dao.TrackDAO;
 import com.chrismuldoon.development.entities.Track;
@@ -20,6 +21,9 @@ public class LoadServiceEJB implements LoadService{
 	@Inject
 	PlaylistDAO pdao;
 	
+	@Inject
+	LibraryDAO ldao;
+	
 	@Override
 	public void LoadData() {
 		XMLParser x = new XMLParser();
@@ -28,7 +32,7 @@ public class LoadServiceEJB implements LoadService{
 		
 		dao.addTracks(x.getAllTracks());
 		pdao.addPlaylists(x.getAllPlaylists());
-		
+		ldao.addLibrary(x.getLibrary());
 	}
 
 	
