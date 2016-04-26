@@ -30,12 +30,14 @@ public class LoadServiceEJB implements LoadService{
 		XMLParser x = new XMLParser();
 		
 		x.parseXML();
-	//	ldao.addLibrary(x.getLibrary());
+		ldao.addLibrary(x.getLibrary());
 		System.out.println(x.getLibrary().getId());
-	//	pdao.addPlaylists(x.getAllPlaylists());
+		pdao.addPlaylists(x.getAllPlaylists());
+		
+		
 		for(Playlist p: x.getAllPlaylists()){
 			System.out.println(p.getPlaylistName());
-		}
+	}
 		dao.addTracks(x.getAllTracks());
 	}
 

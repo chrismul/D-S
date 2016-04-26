@@ -31,7 +31,7 @@ public class Library implements Serializable {
 	@Column(name="persistent_id") private String id;
 	
 	@ManyToOne
-	@JoinColumn(name="username", referencedColumnName = "username", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name="username", referencedColumnName = "username", updatable = false)
 	private User user;
 	
 	@JsonIgnore

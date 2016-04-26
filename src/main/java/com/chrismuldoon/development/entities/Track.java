@@ -1,8 +1,12 @@
 package com.chrismuldoon.development.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity 
 @Table(name="tracks")
@@ -19,6 +23,11 @@ public class Track implements Serializable {
 	@Column(name="genre") private String genre; 
 	@Column(name="year") private String year;
 	@Column(name="location") private String location;
+	
+	
+	@JsonIgnore
+    @OneToMany(mappedBy="track", cascade={CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<PlaylistTrack> playlist_track = new HashSet<PlaylistTrack>();
 	
 	public Track(Integer id, String name, String artist, String album,
 			String genre, String year, String location) {

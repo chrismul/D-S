@@ -30,7 +30,7 @@ public class XMLParser {
 					
 			
 		try {
-			String filePath = "C:/Users/Chris/Desktop/itunes.xml";
+			String filePath = "C:/Users/D15122952/Desktop/itunes.xml";
 			File xmlFile = new File(filePath);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory
@@ -171,7 +171,7 @@ public class XMLParser {
 		Node node = nodeList.item(i);
 		
 		
-		
+		playlist.setLibrary(library);
 		if(node.getTextContent().contains("Playlist ID")){
 			int playlistId = Integer.parseInt(node.getNextSibling().getTextContent());
 			playlist.setId(playlistId);
@@ -181,10 +181,40 @@ public class XMLParser {
 		}
 		
 		
+		
+		if(node.getTextContent().contains("array")){
+			NodeList list = nodeList.item(i).getChildNodes();
+			
+			getPlaylistTracks(list);
+		}
+					
+		
 	}
 	
 	playlists.add(playlist);
 	}
+	
+	public void getPlaylistTracks(NodeList nodeList){
+		
+		
+		
+		
+		
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			NodeList list = nodeList.item(i).getChildNodes();
+			
+			for (int j = 0; j < list.getLength(); j++) {
+				if(list.item(j).getNodeName().equals("integer")){
+					
+					int ptrackId = Integer.parseInt(list.item(j).getTextContent());
+//					Track t = trackMap.get(trackId);
+					System.out.println(ptrackId);
+				
+			}
+		}
+	}
+	}
+				
 	
 	
 	public ArrayList<Track> getAllTracks(){

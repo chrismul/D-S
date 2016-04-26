@@ -33,23 +33,27 @@ public class Playlist implements Serializable {
 	@Column(name="playlist_name") private String playlistName;	
 	
 	@ManyToOne
-	@JoinColumn(name="library_persistent_id", referencedColumnName = "persistent_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name="library_persistent_id", referencedColumnName = "persistent_id", updatable = false)
 	private Library library;
 	
-	@ManyToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinTable(name="playlist_track", joinColumns= {@JoinColumn(name="track_id", nullable=false)}, 
-									  inverseJoinColumns={@JoinColumn(name="playlist_id", nullable=false)})
-	private Collection<Track> tracks;
+	@JsonIgnore
+    @OneToMany(mappedBy="playlist", cascade={CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<PlaylistTrack> playlist_track = new HashSet<PlaylistTrack>();
 	
+//	@ManyToMany(fetch= FetchType.EAGER, cascade=CascadeType.PERSIST)
+//	@JoinTable(name="playlist_track", joinColumns= {@JoinColumn(name="playlist_id", referencedColumnName="id", nullable=false)}, 
+//									  inverseJoinColumns={@JoinColumn(name="track_id", referencedColumnName="track_id", nullable=false)})
+//	private Collection<Track> tracks;
+//	
 	
 	public Playlist(Integer id, String playlistName) {
 		this.id = id;
 		this.playlistName = playlistName;
-		tracks = new ArrayList<Track>();
+//		tracks = new ArrayList<Track>();
 	}
 		
 	public Playlist() {
-		tracks = new ArrayList<Track>();
+//		tracks = new ArrayList<Track>();
 	}
 
 	public Integer getId() {
@@ -68,12 +72,20 @@ public class Playlist implements Serializable {
 		this.playlistName = playlistName;
 	}
 	
-	public Collection<Track> getTracks() {
-		return tracks;
+//	public Collection<Track> getTracks() {
+//		return tracks;
+//	}
+//
+//	public void setTracks(Collection<Track> tracks) {
+//		this.tracks = tracks;
+//	}
+
+	public Library getLibrary() {
+		return library;
 	}
 
-	public void setTracks(Collection<Track> tracks) {
-		this.tracks = tracks;
+	public void setLibrary(Library library) {
+		this.library = library;
 	}
-
+	
 }

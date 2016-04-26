@@ -15,28 +15,29 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.chrismuldoon.development.dao.LibraryDAO;
-import com.chrismuldoon.development.dao.TrackDAO;
+import com.chrismuldoon.development.dao.PlaylistDAO;
 import com.chrismuldoon.development.entities.Library;
+import com.chrismuldoon.development.entities.Playlist;
 
 @Stateless
 @Local
 @TransactionAttribute (TransactionAttributeType.REQUIRED)
-public class LibraryServiceEJB implements LibraryService{
+public class PlaylistServiceEJB implements PlaylistService{
 
-	Logger logger = Logger.getLogger("LibraryEJB");
+	Logger logger = Logger.getLogger("PlaylistEJB");
 	
 	@PersistenceContext
 	private EntityManager em;
 	
 	@Inject
-	private LibraryDAO dao;
+	private PlaylistDAO dao;
 	
 	@Resource
 	private SessionContext context;
 
 	@PostConstruct
 	public void init() {
-		logger.info("in LibraryServiceEJB.init");
+		logger.info("in PlaylistServiceEJB.init");
 		logger.info(em.toString());
 	}
 	
@@ -44,19 +45,19 @@ public class LibraryServiceEJB implements LibraryService{
 	 * Sets the attached DAO to the EJB service
 	 * @param dao new dao
 	 */
-	public void setDao(LibraryDAO dao) {
+	public void setDao(PlaylistDAO dao) {
 		this.dao = dao;
 	}
 
 	@Override
-	public void addLibrary(Library library) {
-		dao.addLibrary(library);
+	public void addPlaylists(Collection<Playlist> playlists) {
+		dao.addPlaylists(playlists);
 	}
 
 	@Override
-	public Collection<Library> getAllLibraries() {
+	public Collection<Playlist> getAllPlaylists() {
 		// TODO Auto-generated method stub
-		return dao.getAllLibraries();
+		return dao.getAllPlaylists();
 	}
 	
 	
