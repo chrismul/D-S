@@ -33,12 +33,12 @@ public class Playlist implements Serializable {
 	@Column(name="playlist_name") private String playlistName;	
 	
 	@ManyToOne
-	@JoinColumn(name="persistent_id", referencedColumnName = "persistent_id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name="library_persistent_id", referencedColumnName = "persistent_id", nullable = false, insertable = false, updatable = false)
 	private Library library;
 	
 	@ManyToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinTable(name="playlist_track", joinColumns= {@JoinColumn(name="id", nullable=false)}, 
-									  inverseJoinColumns={@JoinColumn(name="track_id", nullable=false)})
+	@JoinTable(name="playlist_track", joinColumns= {@JoinColumn(name="track_id", nullable=false)}, 
+									  inverseJoinColumns={@JoinColumn(name="playlist_id", nullable=false)})
 	private Collection<Track> tracks;
 	
 	

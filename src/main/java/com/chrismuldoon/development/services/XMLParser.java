@@ -30,7 +30,7 @@ public class XMLParser {
 					
 			
 		try {
-			String filePath = "C:/Users/D15122952/Desktop/itunes.xml";
+			String filePath = "C:/Users/Chris/Desktop/itunes.xml";
 			File xmlFile = new File(filePath);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory
@@ -69,7 +69,7 @@ public class XMLParser {
 					Node node2 = childrenOfDictNode.item(j);
 
 					if(node2.getTextContent().contains("Library Persistent ID")){
-						library.setId(node.getNextSibling().getTextContent());
+						library.setId(node2.getNextSibling().getTextContent());
 					}
 					//if node name is dict
 					//this is where tracks start
