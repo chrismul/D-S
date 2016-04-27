@@ -87,5 +87,13 @@ public class Playlist implements Serializable {
 	public void setLibrary(Library library) {
 		this.library = library;
 	}
+
+	public Set<PlaylistTrack> getPlaylist_track() {
+		return playlist_track;
+	}
+
+	public void setPlaylist_track(Set<PlaylistTrack> playlist_track) {
+		this.playlist_track = playlist_track;
+	}
 	
 }

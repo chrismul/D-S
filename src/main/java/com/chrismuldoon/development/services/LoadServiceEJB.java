@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import com.chrismuldoon.development.dao.LibraryDAO;
 import com.chrismuldoon.development.dao.PlaylistDAO;
+import com.chrismuldoon.development.dao.PlaylistTrackDAO;
 import com.chrismuldoon.development.dao.TrackDAO;
 import com.chrismuldoon.development.entities.Playlist;
 import com.chrismuldoon.development.entities.Track;
@@ -25,6 +26,10 @@ public class LoadServiceEJB implements LoadService{
 	@Inject
 	LibraryDAO ldao;
 	
+	@Inject
+	PlaylistTrackDAO pldao;
+	
+	@SuppressWarnings("static-access")
 	@Override
 	public void LoadData() {
 		XMLParser x = new XMLParser();
@@ -38,8 +43,14 @@ public class LoadServiceEJB implements LoadService{
 		for(Playlist p: x.getAllPlaylists()){
 			System.out.println(p.getPlaylistName());
 	}
+		
+		
 		dao.addTracks(x.getAllTracks());
+		
+		pldao.addPlaylistTracks(x.getAllPlaylistTracks());
+		
 	}
+	
 
 	
 
