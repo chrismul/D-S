@@ -15,7 +15,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.chrismuldoon.development.dao.LibraryDAO;
-import com.chrismuldoon.development.dao.TrackDAO;
 import com.chrismuldoon.development.entities.Library;
 
 @Stateless
@@ -58,6 +57,5 @@ public class LibraryServiceEJB implements LibraryService{
 		// TODO Auto-generated method stub
 		return dao.getAllLibraries();
 	}
-	
 	
 }

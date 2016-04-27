@@ -16,7 +16,6 @@ import org.apache.shiro.subject.Subject;
 
 import com.chrismuldoon.development.dao.LibraryDAO;
 import com.chrismuldoon.development.entities.Library;
-import com.chrismuldoon.development.entities.Track;
 import com.chrismuldoon.development.entities.User;
 
 @Stateless
@@ -34,40 +33,27 @@ static Logger logger = Logger.getLogger("JPALibraryDAO");
 		logger.info(em.toString());
 	}
 	
-	
-	String username;
-	
+	private String username;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void addLibrary(Library library) {
 		Query query = em.createQuery("from Library");
 		List<Library> libraries = query.getResultList();
 		currentUser();
-		logger.info(username);
 			if(!libraries.contains(library)){
-				
 				User u = em.find(User.class, username);
-				
 				if(library.getUser()==null){
-					
 					library.setUser(em.find(User.class, username));
 					logger.info(u.getUsername());
 				}
-				
 				em.merge(library);
 			}
-			
-		
-		
 	}
 	
 	public void currentUser(){
     	Subject currentUser = SecurityUtils.getSubject();
-  
- 
-    	
     	username = currentUser.getPrincipal().toString();
-    	
     }
 	
 	@SuppressWarnings("unchecked")
@@ -77,7 +63,5 @@ static Logger logger = Logger.getLogger("JPALibraryDAO");
 		List<Library> libraries = query.getResultList();
 		return libraries;
 	}
-	
-	 
 
 }

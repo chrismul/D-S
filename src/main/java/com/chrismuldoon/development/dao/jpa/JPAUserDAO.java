@@ -92,5 +92,4 @@ static Logger logger = Logger.getLogger("JPAUserDAO");
 		List<User> users = query.getResultList();
 		return users;
 	}
-
 }

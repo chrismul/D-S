@@ -1,8 +1,5 @@
 package com.chrismuldoon.jee.jaxrs;
 
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -14,7 +11,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -46,20 +42,17 @@ public class UserCRUDService {
      * @return response user page
      * @throws URISyntaxException
      */
-    @GET
-    @Path("/userCheck")
-    public Response checkRole() throws URISyntaxException{
-    	java.net.URI location = null;
-    	Subject currentUser = SecurityUtils.getSubject();
-    	
-    	location = new java.net.URI("http://localhost:8080/iTunesLibrary/query.jsp");
-       	
-    	
-    	return Response.temporaryRedirect(location).build();
-    }
-    
-    
-    
+//    @GET
+//    @Path("/userCheck")
+//    public Response checkRole() throws URISyntaxException{
+//    	java.net.URI location = null;
+//    	Subject currentUser = SecurityUtils.getSubject();
+//    	
+//    	location = new java.net.URI("http://localhost:8080/iTunesLibrary/query.jsp");
+//       	
+//    	
+//    	return Response.temporaryRedirect(location).build();
+//    }
     
     /**
      * Get username and role of current logged in user

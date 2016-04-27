@@ -8,10 +8,7 @@ import com.chrismuldoon.development.entities.Playlist;
 
 @Local
 public interface PlaylistService {
-
 	public void addPlaylists(Collection<Playlist> playlists);
 	public Collection<Playlist> getAllPlaylists();
-
-
 }
 

@@ -5,12 +5,10 @@ import java.util.Collection;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * Created by nicktodd on 09/09/2014.
- */
-@XmlRootElement // this is required to enable JSON serialization
+@XmlRootElement 
 public class TrackList implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Collection<Track> trackCollection;
 	
     public Collection<Track> getTrackCollection() {
@@ -20,11 +18,5 @@ public class TrackList implements Serializable {
     public void setTrackCollection(Collection<Track> trackCollection) {
         this.trackCollection = trackCollection;
     }
-
-
-    
-
-
-
 
 }

@@ -98,6 +98,5 @@ public class Track implements Serializable {
 		this.location = location;
 	}
 	
-	
 }
 	

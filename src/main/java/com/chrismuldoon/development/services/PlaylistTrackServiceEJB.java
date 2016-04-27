@@ -14,11 +14,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.chrismuldoon.development.dao.LibraryDAO;
-import com.chrismuldoon.development.dao.PlaylistDAO;
 import com.chrismuldoon.development.dao.PlaylistTrackDAO;
-import com.chrismuldoon.development.entities.Library;
-import com.chrismuldoon.development.entities.Playlist;
 import com.chrismuldoon.development.entities.PlaylistTrack;
 
 @Stateless
@@ -61,6 +57,5 @@ public class PlaylistTrackServiceEJB implements PlaylistTrackService{
 		// TODO Auto-generated method stub
 		return dao.getAllPlaylistTracks();
 	}
-	
 	
 }

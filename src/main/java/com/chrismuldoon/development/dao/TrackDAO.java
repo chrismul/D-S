@@ -1,15 +1,11 @@
 package com.chrismuldoon.development.dao;
 
-import java.util.ArrayList;
 import java.util.Collection;
-
 import javax.ejb.Local;
-
 import com.chrismuldoon.development.entities.Track;
 
 @Local
 public interface TrackDAO {
-
 	public void addTrack(Track track);
 	public void addTracks(Collection<Track> tracks);
 	public Track getTrack(String trackName);

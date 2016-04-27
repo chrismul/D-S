@@ -14,9 +14,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.chrismuldoon.development.dao.LibraryDAO;
 import com.chrismuldoon.development.dao.PlaylistDAO;
-import com.chrismuldoon.development.entities.Library;
 import com.chrismuldoon.development.entities.Playlist;
 
 @Stateless
@@ -59,6 +57,4 @@ public class PlaylistServiceEJB implements PlaylistService{
 		// TODO Auto-generated method stub
 		return dao.getAllPlaylists();
 	}
-	
-	
 }

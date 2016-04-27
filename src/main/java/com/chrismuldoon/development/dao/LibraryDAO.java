@@ -5,8 +5,6 @@ import java.util.Collection;
 import javax.ejb.Local;
 
 import com.chrismuldoon.development.entities.Library;
-import com.chrismuldoon.development.entities.User;
-
 
 @Local
 public interface LibraryDAO {

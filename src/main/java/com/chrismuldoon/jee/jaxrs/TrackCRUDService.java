@@ -1,23 +1,16 @@
 package com.chrismuldoon.jee.jaxrs;
 
-import java.util.*;
-
-import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.chrismuldoon.development.entities.Track;
 import com.chrismuldoon.development.entities.TrackList;
-import com.chrismuldoon.development.entities.User;
-import com.chrismuldoon.development.services.LoadService;
 import com.chrismuldoon.development.services.TrackService;
 
 @Path("/tracks")
@@ -26,23 +19,12 @@ public class TrackCRUDService {
 	@Inject
 	private TrackService service;
 	
-	@Inject
-	private LoadService loadService;
-	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	public TrackList getTracks(){
 		TrackList tracks = new TrackList();
 		tracks.setTrackCollection(service.getAllTracks());
 		return tracks;
-	}
-	
-	@Path("/list")
-	@GET
-    @Produces(MediaType.APPLICATION_JSON)
-	public String getTracksList(){
-		loadService.LoadData();
-		return "hello";
 	}
 	
 	@POST

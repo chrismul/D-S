@@ -71,6 +71,4 @@ Logger logger = Logger.getLogger("UserEJB");
 		return dao.getAllUsers();
 	}
 
-	
-
 }

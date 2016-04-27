@@ -1,22 +1,18 @@
 package com.chrismuldoon.development.services;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.*;
-import org.xml.sax.SAXException;
 
 import com.chrismuldoon.development.entities.Library;
 import com.chrismuldoon.development.entities.Playlist;
 import com.chrismuldoon.development.entities.PlaylistTrack;
 import com.chrismuldoon.development.entities.Track;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 public class XMLParser {
 
@@ -150,14 +146,8 @@ public class XMLParser {
 			if (node.getTextContent().contains("Location")) {
 				track.setLocation(node.getNextSibling().getTextContent());
 			}
-
-
-
 		}
-
 		trackMap.put(track.getId(), track);
-
-		//	tracks.add(track);
 	}
 
 
@@ -210,7 +200,6 @@ public class XMLParser {
 							
 							allplaylisttrack.add(playlisttrack);
 						}
-
 					}
 				}
 			}
@@ -219,10 +208,6 @@ public class XMLParser {
 //		playlistMap.put(playlist.getId(), playlist);
 		playlists.add(playlist);
 	}
-
-
-
-
 
 		public ArrayList<Track> getAllTracks(){
 			return tracks;
@@ -247,154 +232,3 @@ public class XMLParser {
 
 
 }
-
-/*
-
- //	System.out.println("Artist: "+artist);
-//	System.out.println("Title: "+name);
-//	System.out.println("Album: "+album);
-//	System.out.println("Genre: "+genre);
-//	System.out.println("Year: "+year);
-//	System.out.println("Location: "+location);
-//
-//	System.out.println("");
-
-
-
- package parser;
-
-import java.io.File;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-public class XMLParser {
-
-
-
-	private void getLibraryDict(NodeList nodeList) {
-		//cycles through list and creates node from each one in list
-		for (int i = 0; i < nodeList.getLength(); i++) {
-			Node node = nodeList.item(i);
-
-
-			//if node name is dict
-			//this is where library starts
-			//makes a list of nodes children
-			if (node.getNodeName().contains("dict")) {
-				NodeList childrenOfDictNode = node.getChildNodes();
-
-
-				//cycles through list and creates node from each one in list
-				for (int j = 0; j < childrenOfDictNode.getLength(); j++) {
-					Node node2 = childrenOfDictNode.item(j);
-
-					//if node name is dict
-					//this is where tracks start
-					//makes a list of nodes children
-					if (node2.getNodeName().contains("dict")) {
-						NodeList nodeList2 = node2.getChildNodes();
-						getTracksDict(nodeList2);
-					}
-
-				}
-			}
-		}
-	}
-
-
-
-
-	private void getTracksDict(NodeList nodeList) {
-		//cycles through list and creates node from each one in list
-		for (int i = 0; i < nodeList.getLength(); i++) {
-			Node node = nodeList.item(i);
-
-			//if node name is dict
-			//this is where info for individual tracks are
-			//makes a list of nodes children
-			//passes to method to get individual track info
-			if (node.getNodeName().contains("dict")) {
-				NodeList list = nodeList.item(i).getChildNodes();
-				getIndividualTracksFromDict(list);
-			}
-		}
-	}
-
-	private void getIndividualTracksFromDict(NodeList nodeList){
-		String name = null;
-		String artist = null;
-		String album = null;
-		String genre = null;
-		String year = null;
-		String location = null;
-
-	for (int i = 0; i < nodeList.getLength(); i++) {
-
-		Node node = nodeList.item(i);
-
-		if (node.getTextContent().contains("Name")) {
-			name = node.getNextSibling().getTextContent();
-		}
-		if (node.getTextContent().contains("Artist")) {
-			artist = node.getNextSibling().getTextContent();
-		}
-		if (node.getTextContent().contains("Album")) {
-			album = node.getNextSibling().getTextContent();
-		}
-		if (node.getTextContent().contains("Genre")) {
-			genre = node.getNextSibling().getTextContent();
-		}
-		if (node.getTextContent().contains("Year")) {
-			year = node.getNextSibling().getTextContent();
-		}
-
-		if (node.getTextContent().contains("Location")) {
-			location = node.getNextSibling().getTextContent();
-	}
-
-	}
-
-	System.out.println("Artist: "+artist);
-	System.out.println("Title: "+name);
-	System.out.println("Album: "+album);
-	System.out.println("Genre: "+genre);
-	System.out.println("Year: "+year);
-	System.out.println("Location: "+location);
-
-	System.out.println("");
-	}
-
-	public static void main(String[] args) {
-		try {
-			String filePath = "C:/Users/D15122952/Desktop/itunes.xml";
-			File xmlFile = new File(filePath);
-
-			DocumentBuilderFactory factory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-
-			Document doc = builder.parse(xmlFile);
-
-			Element root = doc.getDocumentElement();
-			NodeList c = root.getChildNodes();
-
-			XMLParser x = new XMLParser();
-			x.getLibraryDict(c);
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-	}
-
-}
-
-
-
- */

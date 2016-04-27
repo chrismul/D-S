@@ -1,7 +1,6 @@
 package com.chrismuldoon.development.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,23 +9,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
-
 
 @Entity @Table(name="libraries")
 @XmlRootElement
 public class Library implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@Column(name="persistent_id") private String id;
 	
@@ -69,13 +63,5 @@ public class Library implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-//	public Set<Playlist> getPlaylist() {
-//		return playlist;
-//	}
-//
-//	public void setPlaylist(Set<Playlist> playlist) {
-//		this.playlist = playlist;
-//	}
 
 }

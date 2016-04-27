@@ -26,6 +26,5 @@ public class UserList implements Serializable{
     public void setUserCollection(Collection<User> userCollection) {
         this.userCollection = userCollection;
     }
-  
 
 }
