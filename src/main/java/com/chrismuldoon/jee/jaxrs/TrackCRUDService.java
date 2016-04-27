@@ -1,5 +1,7 @@
 package com.chrismuldoon.jee.jaxrs;
 
+import java.util.Collection;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -10,7 +12,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.chrismuldoon.development.entities.Track;
-import com.chrismuldoon.development.entities.TrackList;
 import com.chrismuldoon.development.services.TrackService;
 
 @Path("/tracks")
@@ -21,9 +22,8 @@ public class TrackCRUDService {
 	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
-	public TrackList getTracks(){
-		TrackList tracks = new TrackList();
-		tracks.setTrackCollection(service.getAllTracks());
+	public Collection<Track> getTracks(){
+		Collection<Track> tracks = service.getAllTracks();
 		return tracks;
 	}
 	
