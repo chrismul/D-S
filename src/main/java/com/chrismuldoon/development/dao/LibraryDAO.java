@@ -10,4 +10,6 @@ import com.chrismuldoon.development.entities.Library;
 public interface LibraryDAO {
 	public void addLibrary(Library library);
 	public Collection<Library> getAllLibraries();
+	public Collection<Library> getUserLibraries(String username);
+	public Collection<String> getLibraryPersistentIds();
 }

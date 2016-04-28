@@ -66,6 +66,11 @@ Logger logger = Logger.getLogger("TrackEJB");
 	public Collection<Track> getTracksByArtist(String artistName) {
 		return dao.getTracksByArtist(artistName);
 	}
+	
+	@Override
+	public Collection<Track> getTracksByGenre(String genre) {
+		return dao.getTracksByGenre(genre);
+	}
 
 	@Override
 	public Collection<Track> getTracksByAlbum(String albumName) {
@@ -76,5 +81,17 @@ Logger logger = Logger.getLogger("TrackEJB");
 	public Collection<Track> getAllTracks() {
 		return dao.getAllTracks();
 	}
+
+	@Override
+	public Collection<String> getAllGenres() {
+		return dao.getAllGenres();
+	}
+
+	@Override
+	public Collection<String> getAllArtists() {
+		return dao.getAllArtists();
+	}
+
+	
 
 }

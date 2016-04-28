@@ -23,7 +23,17 @@
 <link rel="stylesheet" href="media/css/bootstrap-table.css">
 <style type="text/css" class="init">
  -->
+<style type="text/css">
 
+body { margin:0;
+	  /*background-color: #003366;*/
+	  background: red; /* For browsers that do not support gradients */
+    background: -moz-linear-gradient(#003366, #FFFFFF); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#78B733, #FFFFFF); /* Standard syntax */}
+a:hover {
+    color: #ff8000;
+}
+</style>
 
 <script type="text/javascript" language="javascript" src="media/js/jquery.js"></script>
 <script type="text/javascript" language="javascript" src="resources/syntax/shCore.js"></script>

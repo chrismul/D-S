@@ -52,7 +52,7 @@ public class JPATrackDAO implements TrackDAO {
 		for(Track thisTrack:tracks){
 			if(thisTrack.getName().equals(track.getName())){
 				existingTrack=thisTrack;
-				track.setId(existingTrack.getId());
+				track.setTrackId(existingTrack.getTrackId());
 			}
 		}
 		em.merge(track);
@@ -63,6 +63,15 @@ public class JPATrackDAO implements TrackDAO {
 	public Collection<Track> getTracksByArtist(String artist) {
 		Query query  = em.createQuery("from Track where artist=:artist");
 		query.setParameter("artist", artist);
+		List<Track> result = query.getResultList();
+		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<Track> getTracksByGenre(String genre) {
+		Query query  = em.createQuery("from Track where genre=:genre");
+		query.setParameter("genre", genre);
 		List<Track> result = query.getResultList();
 		return result;
 	}
@@ -83,4 +92,24 @@ public class JPATrackDAO implements TrackDAO {
 		List<Track> tracks = query.getResultList(); 
 		return tracks;
 	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<String> getAllGenres() {
+		Query query = em.createQuery("select distinct tr.genre from Track tr");
+		List<String> genres = query.getResultList();
+		return genres;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<String> getAllArtists() {
+		Query query = em.createQuery("select distinct tr.artist from Track tr");
+		List<String> artists = query.getResultList();
+		return artists;
+	}
+
+
+	
 }

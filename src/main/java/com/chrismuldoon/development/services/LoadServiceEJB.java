@@ -26,10 +26,10 @@ public class LoadServiceEJB implements LoadService{
 	PlaylistTrackDAO pldao;
 	
 	@Override
-	public void LoadData() {
+	public void LoadData(String filename) {
 		XMLParser x = new XMLParser();
 		
-		x.parseXML();
+		x.parseXML(filename);
 		
 		ldao.addLibrary(x.getLibrary());
 		

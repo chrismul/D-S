@@ -5,5 +5,5 @@ import javax.ejb.Local;
 
 @Local
 public interface LoadService {
-	abstract void LoadData();
+	public void LoadData(String filename);
 }

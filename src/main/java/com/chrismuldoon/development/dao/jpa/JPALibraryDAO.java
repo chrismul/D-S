@@ -16,6 +16,7 @@ import org.apache.shiro.subject.Subject;
 
 import com.chrismuldoon.development.dao.LibraryDAO;
 import com.chrismuldoon.development.entities.Library;
+import com.chrismuldoon.development.entities.Track;
 import com.chrismuldoon.development.entities.User;
 
 @Stateless
@@ -62,6 +63,21 @@ static Logger logger = Logger.getLogger("JPALibraryDAO");
 		Query query = em.createQuery("from Library");
 		List<Library> libraries = query.getResultList();
 		return libraries;
+	}
+	
+	public Collection<Library> getUserLibraries(String username){
+		Query query  = em.createQuery("from Library where username = :username");
+		query.setParameter("username", username);
+		List<Library> libraries = query.getResultList();
+		return libraries;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<String> getLibraryPersistentIds() {
+		Query query  = em.createQuery("select distinct libraryPersistentId from Library");
+		List<String> result = query.getResultList();
+		return result;
 	}
 
 }

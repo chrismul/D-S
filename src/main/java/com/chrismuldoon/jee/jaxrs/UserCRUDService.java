@@ -2,6 +2,8 @@ package com.chrismuldoon.jee.jaxrs;
 
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -45,13 +47,14 @@ public class UserCRUDService {
      * @return response user page
      * @throws URISyntaxException
      */
-    @GET
+    @SuppressWarnings("unused")
+	@GET
     @Path("/userCheck")
     public Response checkRole() throws URISyntaxException{
     	java.net.URI location = null;
     	Subject currentUser = SecurityUtils.getSubject();
     	
-    	location = new java.net.URI("http://localhost:8080/iTunesLibrary/query.jsp");
+    	location = new java.net.URI("http://localhost:8080/iTunesLibrary/home.jsp");
        	
     	
     	return Response.temporaryRedirect(location).build();
@@ -64,14 +67,14 @@ public class UserCRUDService {
     @GET
     @Path("/currentUser")
     @Produces(MediaType.APPLICATION_JSON)
-    public String currentUser(){
+    public Collection<String> currentUser(){
     	Subject currentUser = SecurityUtils.getSubject();
-  
+    	ArrayList<String> user = new ArrayList<String>();
     	String username = "";
     	
     	username = currentUser.getPrincipal().toString();
-    	
-    	return username;
+    	user.add(username);
+    	return user;
     }
     
     /**
@@ -102,20 +105,5 @@ public class UserCRUDService {
 		service.updateUser(updatedUser);
 	}
     
-    /**
-     * Get username and role of current logged in user
-     * @return collection with username and role
-     */
-//    @GET
-//    @Path("/currentUser")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Collection<String> currentUser(){
-//    	ArrayList<String> user = new ArrayList<String>();
-//    	String username = "";
-//    	
-//    	user.add(username);
-//    	
-//    	return user;
-//    }
     
 }

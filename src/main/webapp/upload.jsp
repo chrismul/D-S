@@ -24,7 +24,15 @@
 	<script type="text/javascript" src="media/js/collapse.js"></script>
 	<script type="text/javascript" language="javascript" class="init"></script>
 	<script type="text/javascript" src="media/js/select2.full.js"></script>
+	<style type="text/css">
 
+body { margin:0;
+	  /*background-color: #003366;*/
+	  background: red; /* For browsers that do not support gradients */
+    background: -moz-linear-gradient(#003366, #FFFFFF); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#78B733, #FFFFFF); /* Standard syntax */}
+
+</style>
     <!-- Custom styles for this template -->
     <link href="upload.css" rel="stylesheet">
 
@@ -54,8 +62,6 @@
 				<ul class="nav navbar-nav">
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<!-- li style="font-size: 1.8em;"><a href="addUser.jsp" class="navbar-brand"><span></span> Add/Edit Users</a></li-->
-					<li style="font-size: 1.8em;"><a href="#" id="logintype" class="navbar-brand"><span></span>Hello</a></li>
 					<li style="font-size: 1.8em;">
 						<a href="logout">
 							<span class="glyphicon glyphicon-log-out"></span> Log out
@@ -68,21 +74,32 @@
 	<div class="col-lg-12">
 		<div class="panel panel-primary">
 			<div id="phead2" class="panel-heading">
-				<h4>Dataset Upload</h4>
+				<h4>Upload Library</h4>
 			</div>
 			<div class="panel-body" style="font-size: 15px;">
-				<form class="upload" action="../rest/file/upload" method="POST" enctype="multipart/form-data">
+		
 			       <p>  
-			       <input type="file" name="uploadFile" button class="btn btn-primary" />
+			       <input id="up" type="text" name="uploadFile" button class="btn btn-primary" />
 			       </p>  
-			       <input id="upload-button" type="submit" value="Upload File (xls only)" button class="btn btn-lg btn-primary" />
+			       <input id="upload-button" type="button" onclick="upload()" value="Upload File" button class="btn btn-lg btn-primary" />
 					
 				</form>
 			</div>
 		</div>
 	</div>
 	<script>
-		
+	
+	function upload(){
+	var filename = document.getElementById("up").value;
+	$.ajax({
+	  type: 'GET',
+	  url: './rest/load/'+encodeURI(filename),
+	  success: window.location.assign("http://localhost:8080/iTunesLibrary/home.jsp")
+	  
+	});
+	
+}
+	
 	</script>
 </body>
 </html>

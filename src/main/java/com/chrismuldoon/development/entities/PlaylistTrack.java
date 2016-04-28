@@ -21,14 +21,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 		
 		@Id
 		@GeneratedValue(strategy = GenerationType.AUTO)
-		@Column(name="id") private String id;
+		@Column(name="playlistTrackId") private String playlistTrackId;
 		
 		@ManyToOne
-		@JoinColumn(name="playlist_id", referencedColumnName = "id", updatable = false)
+		@JoinColumn(name="playlistId", referencedColumnName = "playlistId", updatable = false)
 		private Playlist playlist;
 		
 		@ManyToOne
-		@JoinColumn(name="track_id", referencedColumnName = "track_id", updatable = false)
+		@JoinColumn(name="trackId", referencedColumnName = "trackId", updatable = false)
 		private Track track;
 
 		public PlaylistTrack(Playlist playlist, Track track) {

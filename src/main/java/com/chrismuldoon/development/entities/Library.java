@@ -22,7 +22,7 @@ public class Library implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="persistent_id") private String id;
+	@Column(name="libraryPersistentId") private String libraryPersistentId;
 	
 	@ManyToOne
 	@JoinColumn(name="username", referencedColumnName = "username", updatable = false)
@@ -40,20 +40,20 @@ public class Library implements Serializable {
                     this.playlists = playlists;
     }
 		
-	public Library(String id, User user) {
+	public Library(String libraryPersistentId, User user) {
 		super();
-		this.id = id;
+		this.libraryPersistentId = libraryPersistentId;
 		this.user = user;
 	}
 
 	public Library() {}
 
-	public String getId() {
-		return id;
+	public String getLibraryPersistentId() {
+		return libraryPersistentId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setLibraryPersistentId(String libraryPersistentId) {
+		this.libraryPersistentId = libraryPersistentId;
 	}
 
 	public User getUser() {

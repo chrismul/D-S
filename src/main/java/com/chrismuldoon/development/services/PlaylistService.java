@@ -10,5 +10,6 @@ import com.chrismuldoon.development.entities.Playlist;
 public interface PlaylistService {
 	public void addPlaylists(Collection<Playlist> playlists);
 	public Collection<Playlist> getAllPlaylists();
-}
+	public Collection<Playlist> getAllPlaylistsInLibrary(String libraryPersistentId);
+	public Collection<String> getPlaylistsNames();}
 

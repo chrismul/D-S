@@ -57,4 +57,13 @@ public class PlaylistServiceEJB implements PlaylistService{
 		// TODO Auto-generated method stub
 		return dao.getAllPlaylists();
 	}
+	
+	@Override
+	public Collection<Playlist> getAllPlaylistsInLibrary(String libraryPersistentId){
+		return dao.getAllPlaylistsInLibrary(libraryPersistentId);
+	}
+	
+	public Collection<String> getPlaylistsNames(){
+		return dao.getPlaylistsNames();
+	}
 }

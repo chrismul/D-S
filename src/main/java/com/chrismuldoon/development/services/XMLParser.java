@@ -28,13 +28,12 @@ public class XMLParser {
 
 	public XMLParser() {}
 
-	public void parseXML() {
+	public void parseXML(String filename) {
 
 
 		try {
 
-			String filePath = "C:/Users/D15122952/Desktop/Library3.xml";
-			File xmlFile = new File(filePath);
+			File xmlFile = new File("C:/Users/Chris/Desktop/"+filename);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory
 					.newInstance();
@@ -76,7 +75,7 @@ public class XMLParser {
 					Node node2 = childrenOfDictNode.item(j);
 
 					if(node2.getTextContent().contains("Library Persistent ID")){
-						library.setId(node2.getNextSibling().getTextContent());
+						library.setLibraryPersistentId(node2.getNextSibling().getTextContent());
 					}
 					//if node name is dict
 					//this is where tracks start
@@ -125,7 +124,7 @@ public class XMLParser {
 
 			if(node.getTextContent().contains("Track ID")){
 				int trackId = Integer.parseInt(node.getNextSibling().getTextContent());
-				track.setId(trackId);
+				track.setTrackId(trackId);
 			}
 			if (node.getTextContent().contains("Name")) {
 				track.setName(node.getNextSibling().getTextContent());
@@ -147,7 +146,7 @@ public class XMLParser {
 				track.setLocation(node.getNextSibling().getTextContent());
 			}
 		}
-		trackMap.put(track.getId(), track);
+		trackMap.put(track.getTrackId(), track);
 	}
 
 
@@ -178,7 +177,7 @@ public class XMLParser {
 			playlist.setLibrary(library);
 			if(node.getTextContent().contains("Playlist ID")){
 				int playlistId = Integer.parseInt(node.getNextSibling().getTextContent());
-				playlist.setId(playlistId);
+				playlist.setPlaylistId(playlistId);
 			}
 			if (node.getTextContent().contains("Name")) {
 				playlist.setPlaylistName(node.getNextSibling().getTextContent());
@@ -205,7 +204,6 @@ public class XMLParser {
 			}
 		}
 
-//		playlistMap.put(playlist.getId(), playlist);
 		playlists.add(playlist);
 	}
 

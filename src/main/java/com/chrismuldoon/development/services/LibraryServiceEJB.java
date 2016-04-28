@@ -58,4 +58,13 @@ public class LibraryServiceEJB implements LibraryService{
 		return dao.getAllLibraries();
 	}
 	
+	@Override
+	public Collection<Library> getUserLibraries(String username){
+		return dao.getUserLibraries(username);
+	}
+	
+	@Override
+	public Collection<String> getLibraryPersistentIds(){
+		return dao.getLibraryPersistentIds();
+	}
 }

@@ -33,4 +33,22 @@ public class JPAPlaylistDAO implements PlaylistDAO {
 		List<Playlist> playlists = query.getResultList();
 		return playlists;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<Playlist> getAllPlaylistsInLibrary(String libraryPersistentId) {
+		Query query  = em.createQuery("from Playlist where libraryPersistentId = :libraryPersistentId");
+		query.setParameter("libraryPersistentId", libraryPersistentId);
+		List<Playlist> playlists = query.getResultList();
+		return playlists;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<String> getPlaylistsNames(){
+		Query query  = em.createQuery("select distinct playlistName from Playlist");
+		List<String> result = query.getResultList();
+		return result;
+	}
+	
 }

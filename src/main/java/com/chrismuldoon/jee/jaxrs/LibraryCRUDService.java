@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -28,5 +29,20 @@ public class LibraryCRUDService {
     	Collection<Library> libraries = service.getAllLibraries();  
         return libraries;
     }
+    
+  	@GET
+  	@Path("/getLibrary/{username}")
+  	@Produces(MediaType.APPLICATION_JSON)
+  	public Collection<Library> getUserLibraries(@PathParam("username") String username){
+  		return service.getUserLibraries(username);
+  	}
+  	
+  	@GET
+  	@Path("/getLibraryIds")
+  	@Produces(MediaType.APPLICATION_JSON)
+  	public Collection<String> getLibraryPersistentIds(){
+  		return service.getLibraryPersistentIds();
+  	}
+
  
 }

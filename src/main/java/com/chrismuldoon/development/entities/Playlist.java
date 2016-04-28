@@ -23,32 +23,32 @@ public class Playlist implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="id") private Integer id;
+	@Column(name="playlistId") private Integer playlistId;
 	
-	@Column(name="playlist_name") private String playlistName;	
+	@Column(name="playlistName") private String playlistName;	
 	
 	@ManyToOne
-	@JoinColumn(name="library_persistent_id", referencedColumnName = "persistent_id", updatable = false)
+	@JoinColumn(name="libraryPersistentId", referencedColumnName = "libraryPersistentId", updatable = false)
 	private Library library;
 	
 	@JsonIgnore
     @OneToMany(mappedBy="playlist", cascade={CascadeType.MERGE, CascadeType.PERSIST})
     private Set<PlaylistTrack> playlist_track = new HashSet<PlaylistTrack>();
 	
-	public Playlist(Integer id, String playlistName) {
-		this.id = id;
+	public Playlist(Integer playlistId, String playlistName) {
+		this.playlistId = playlistId;
 		this.playlistName = playlistName;
 	}
 		
 	public Playlist() {
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getPlaylistId() {
+		return playlistId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setPlaylistId(Integer playlistId) {
+		this.playlistId = playlistId;
 	}
 
 	public String getPlaylistName() {

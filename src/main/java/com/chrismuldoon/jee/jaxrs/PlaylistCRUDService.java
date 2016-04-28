@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -27,4 +28,18 @@ public class PlaylistCRUDService {
     	Collection<Playlist> playlists = service.getAllPlaylists();  
         return playlists;
     }
+    
+    @GET
+  	@Path("/getPlaylistsInLibrary/{libraryPersistentId}")
+  	@Produces(MediaType.APPLICATION_JSON)
+  	public Collection<Playlist> getAllPlaylistsInLibrary(@PathParam("libraryPersistentId") String libraryPersistentId){
+  		return service.getAllPlaylistsInLibrary(libraryPersistentId);
+  	}
+    
+    @GET
+  	@Path("/getPlaylistNames")
+  	@Produces(MediaType.APPLICATION_JSON)
+  	public Collection<String> getPlaylistsNames(){
+  		return service.getPlaylistsNames();
+  	}
 }

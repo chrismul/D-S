@@ -15,7 +15,7 @@ public class Track implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="track_id") private Integer id;
+	@Column(name="trackId") private Integer trackId;
 	
 	@Column(name="name") private String name; 
 	@Column(name="artist") private String artist; 
@@ -29,9 +29,9 @@ public class Track implements Serializable {
     @OneToMany(mappedBy="track", cascade={CascadeType.MERGE, CascadeType.PERSIST})
     private Set<PlaylistTrack> playlist_track = new HashSet<PlaylistTrack>();
 	
-	public Track(Integer id, String name, String artist, String album,
+	public Track(Integer trackId, String name, String artist, String album,
 			String genre, String year, String location) {
-		this.id = id;
+		this.trackId = trackId;
 		this.name = name;
 		this.artist = artist;
 		this.album = album;
@@ -42,12 +42,12 @@ public class Track implements Serializable {
 	
 	public Track() {}
 
-	public Integer getId() {
-		return id;
+	public Integer getTrackId() {
+		return trackId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setTrackId(Integer trackId) {
+		this.trackId = trackId;
 	}
 
 	public String getName() {
